@@ -1,0 +1,7 @@
+name: BlockTypeCorrector
+main: corrector\Main
+author: "jasonwynn10"
+version: 0.1.0
+api:
+- 3.0.0-ALPHA4
+- 3.0.0-ALPHA5
