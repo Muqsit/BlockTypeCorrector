@@ -9,12 +9,11 @@ class Corrector extends PluginTask {
     /** @var int $bpt */
     private $bpt;
     /** @var int[] $blockTypes */
-    private $blockTypes = [
-        "0:0" => "0:0"
-    ];
+    private $blockTypes = [];
     public function __construct(Plugin $plugin, $bpt) {
         parent::__construct($plugin);
         $this->bpt = $bpt;
+        $this->blockTypes = $plugin->getConfig()->get("blocks", []);
     }
     public function onRun($currentTick) {
         $blocks = 0;
@@ -31,6 +30,9 @@ class Corrector extends PluginTask {
                                     $arr = explode(":",$this->blockTypes["{$block->getId()}:{$block->getDamage()}"]);
                                     if(is_int($arr[0]) and is_int($arr[1])) {
                                         $chunk->setBlock($x, $y, $z, $arr[0], $arr[1]);
+                                        $blocks++;
+                                    }else{
+                                        $this->getOwner()->getLogger()->error("Invalid value set in config at block {$block->getId()}:{$block->getDamage()}");
                                     }
                                 }
                             }else{
