@@ -1,3 +1,4 @@
+BlocksPerTick: 256
 blocks:
   "3:2": "243:0"
   "31:1": "2:0"
